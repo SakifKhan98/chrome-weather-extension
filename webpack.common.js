@@ -1,7 +1,7 @@
-const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path')
+const CopyPlugin = require('copy-webpack-plugin')
+const HtmlPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -23,9 +23,9 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
-        type: 'asset/resource'
-      }
-    ]
+        type: 'asset/resource',
+      },
+    ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -39,13 +39,10 @@ module.exports = {
         {
           from: path.resolve('src/static'),
           to: path.resolve('dist'),
-        }
-      ]
+        },
+      ],
     }),
-    ...getHtmlPlugins([
-      'popup',
-      'options'
-    ]),
+    ...getHtmlPlugins(['popup', 'options']),
   ],
   output: {
     filename: '[name].js',
@@ -55,13 +52,16 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
     },
-  }
+  },
 }
 
 function getHtmlPlugins(chunks) {
-  return chunks.map(chunk => new HtmlPlugin({
-    title: 'Weather Extension',
-    filename: `${chunk}.html`,
-    chunks: [chunk],
-  }))
+  return chunks.map(
+    (chunk) =>
+      new HtmlPlugin({
+        title: 'Weather Extension',
+        filename: `${chunk}.html`,
+        chunks: [chunk],
+      })
+  )
 }
