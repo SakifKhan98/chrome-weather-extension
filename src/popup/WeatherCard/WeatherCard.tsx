@@ -7,7 +7,11 @@ import {
   CardContent,
   Typography,
 } from '@material-ui/core'
-import { fetchOpenWeatherData, OpenWeatherData } from '../../utils/api'
+import {
+  fetchOpenWeatherData,
+  OpenWeatherData,
+  OpenWeatherTempScale,
+} from '../../utils/api'
 
 const WeatherCardContainer: React.FC<{
   children: React.ReactNode
@@ -31,15 +35,16 @@ const WeatherCardContainer: React.FC<{
 
 type WeatherCardState = 'loading' | 'error' | 'ready'
 
-const WeatherCard: React.FC<{ city: string; onDelete?: () => void }> = ({
-  city,
-  onDelete,
-}) => {
+const WeatherCard: React.FC<{
+  city: string
+  tempScale: OpenWeatherTempScale
+  onDelete?: () => void
+}> = ({ city, tempScale, onDelete }) => {
   const [weatherData, setWeatherData] = useState<OpenWeatherData | null>(null)
   const [cardState, setCardState] = useState<WeatherCardState>('loading')
 
   useEffect(() => {
-    fetchOpenWeatherData(city)
+    fetchOpenWeatherData(city, tempScale)
       .then((data) => {
         console.log(data)
         setWeatherData(data)
@@ -49,7 +54,7 @@ const WeatherCard: React.FC<{ city: string; onDelete?: () => void }> = ({
         setCardState('error')
         console.log(err)
       })
-  }, [city])
+  }, [city, tempScale])
   if (cardState == 'loading' || cardState == 'error') {
     return (
       <WeatherCardContainer onDelete={onDelete}>
@@ -65,13 +70,13 @@ const WeatherCard: React.FC<{ city: string; onDelete?: () => void }> = ({
     <WeatherCardContainer onDelete={onDelete}>
       <Typography variant='h5'>{weatherData.name}</Typography>
       <Typography variant='body1'>
-        Temperature: {Math.round(weatherData.main.temp)} °C
+        Temperature: {Math.round(weatherData.main.temp)}°
       </Typography>
       <Typography variant='body1'>
         Humidity: {Math.round(weatherData.main.humidity)}%
       </Typography>
       <Typography variant='body1'>
-        Temperature Feels Like: {Math.round(weatherData.main.feels_like)} °C
+        Temperature Feels Like: {Math.round(weatherData.main.feels_like)}°
       </Typography>
     </WeatherCardContainer>
   )
