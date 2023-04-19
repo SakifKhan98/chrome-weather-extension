@@ -6,17 +6,13 @@
 
 ## Project Description
 
----
-
 This is a chrome extension that displays the weather for the city added by the user. User can add multiple cities and can delete them as well. It is build using `React`, `TypeScript`, `Webpack` and `Manifest V3`.
 
 <br />
 
 ## Getting Started
 
----
-
-0. `git clone` - https://github.com/SakifKhan98/chrome-Weather-Extension.git
+0. `git clone` - https://github.com/SakifKhan98/chrome-weather-extension.git
 1. `npm i` to install dependancies
 2. `npm start` to start running the fast development mode Webpack build process that bundle files into the `dist` folder. (use `npm run build` to use the production build)
 3. Go to `chrome://extensions/` and toggle on `Developer mode`.
@@ -27,8 +23,6 @@ This is a chrome extension that displays the weather for the city added by the u
 
 ## Loading The Chrome Extension
 
----
-
 1. Open Chrome and navigate to `chrome://extensions/`
 2. Toggle on `Developer mode` in the top right corner
 3. Click `Load unpacked`
@@ -38,11 +32,11 @@ This is a chrome extension that displays the weather for the city added by the u
 
 ## Production Build
 
----
-
 1. `npm run build` to generate a minimized production build in the `dist` folder
 2. ZIP the entire `dist` folder (e.g. `dist.zip`)
 3. Publish the ZIP file on the Chrome Web Store Developer Dashboard!
+
+<br />
 
 # Features:
 
@@ -53,3 +47,14 @@ This is a chrome extension that displays the weather for the city added by the u
 5. User can see the weather of the city in the popup.
 6. User can toggle popup in the extension option page.
 7. User can see Temperature, Humidity and Feels like temperature.
+
+<br />
+
+# Direct Using Instruction:
+
+[Chrome Weather Extension](https://drive.google.com/file/d/1lQlxkYHNKFmhF7Sh1iniZxfBNLN0tv_v/view?usp=sharing)
+
+1. Download the file from the above link. Extract it. You will find a `dist` folder.
+2. Go to `chrome://extensions/` and toggle on `Developer mode`.
+3. Click `Load unpacked`. Then browse and select the `dist` folder you have just extracted.
+4. Now you can see the extension, enable it to use it.
