@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import 'fontsource-roboto'
 import './popup.css'
-import WeatherCard from './WeatherCard/WeatherCard'
+import WeatherCard from '../components/WeatherCard/WeatherCard'
 import {
   Box,
   Grid,
@@ -11,7 +11,10 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core'
-import { Add as AddIcon } from '@material-ui/icons'
+import {
+  Add as AddIcon,
+  PictureInPicture as PictureInPictureIcon,
+} from '@material-ui/icons'
 import {
   setStoredCities,
   getStoredCities,
@@ -19,6 +22,7 @@ import {
   getStoredOptions,
   LocalStorageOptions,
 } from '../utils/storage'
+import { Messages } from '../utils/messages'
 
 const App: React.FC<{}> = () => {
   const [cities, setCities] = useState<string[]>([])
@@ -59,12 +63,25 @@ const App: React.FC<{}> = () => {
     })
   }
 
+  const handleOverlayToggle = () => {
+    chrome.tabs.query(
+      {
+        active: true,
+      },
+      (tabs) => {
+        if (tabs.length > 0) {
+          chrome.tabs.sendMessage(tabs[0].id, Messages.TOGGLE_OVERLAY)
+        }
+      }
+    )
+  }
+
   if (!options) return null
 
   console.log(cityInput)
   return (
     <Box mx={'8px'} my={'16px'}>
-      <Grid container justify='space-between'>
+      <Grid container justify='space-evenly'>
         <Grid item>
           <Paper>
             <Box px={'15px'} py={'5px'}>
@@ -86,6 +103,15 @@ const App: React.FC<{}> = () => {
             <Paper>
               <IconButton onClick={handleTempScale}>
                 {options.tempScale === 'metric' ? '\u2103' : '\u2109'}
+              </IconButton>
+            </Paper>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box py={'5px'}>
+            <Paper>
+              <IconButton onClick={handleTempScale}>
+                <PictureInPictureIcon onClick={handleOverlayToggle} />
               </IconButton>
             </Paper>
           </Box>
