@@ -108,13 +108,13 @@ const App: React.FC<{}> = () => {
           </Box>
         </Grid>
         <Grid item>
-          <Box py={'5px'}>
-            <Paper>
-              <IconButton onClick={handleTempScale}>
-                <PictureInPictureIcon onClick={handleOverlayToggle} />
+          <Paper>
+            <Box py='4px'>
+              <IconButton onClick={handleOverlayToggle}>
+                <PictureInPictureIcon />
               </IconButton>
-            </Paper>
-          </Box>
+            </Box>
+          </Paper>
         </Grid>
       </Grid>
       {options.homeCity != '' && (
