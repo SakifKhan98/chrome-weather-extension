@@ -10,6 +10,12 @@ This is a chrome extension that displays the weather for the city added by the u
 
 <br />
 
+## Demo & Instruction Video Link:
+
+[Demo & Instruction video - Chrome Weather Extension](https://drive.google.com/file/d/1BOn_0DrPHc-rZKDB4l6x8VWK-URFBTsw/view?usp=sharing)
+
+<br />
+
 ## Getting Started
 
 0. `git clone` - https://github.com/SakifKhan98/chrome-weather-extension.git
